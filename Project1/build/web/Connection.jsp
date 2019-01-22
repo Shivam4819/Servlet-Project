@@ -1,29 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Database;
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<%@page import="java.util.*" %>
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
-
-/**
- *
- * @author shivam
- */
-public class DatabaseConnector {
+<% 
+    class Database {
     protected static final String dbClassName = "com.mysql.jdbc.Driver";
     protected static final String CONNECTION = "jdbc:mysql://127.0.0.1/Project";
-    public Connection connection = null;
-    public Statement smt = null;
-    public ResultSet resultSet = null;
+    protected Connection connection = null;
+    protected Statement smt = null;
+    protected ResultSet resultSet = null;
 
-    public void initializeDbConnection() {
+    protected void initializeDbConnection() {
 
         try {
             Class.forName(dbClassName);
@@ -41,7 +28,7 @@ public class DatabaseConnector {
         }
     }
 
-    public void closeDbConnection(Connection connection) {
+    protected void closeDbConnection(Connection connection) {
         if (connection != null) {
             try {
                 connection.close();
@@ -51,3 +38,4 @@ public class DatabaseConnector {
         }
     }
 }
+    %>

@@ -27,9 +27,14 @@ public class LoginVerficationServlet extends HttpServlet {
             throws ServletException, IOException {
         String email=request.getParameter("email");
         String password=request.getParameter("password");
+        int flag;
         System.out.println("email2->"+email);
         LoginVerficationDatabase loginDatabase=new LoginVerficationDatabase();
-        loginDatabase.checkData(email, password);
+        flag=loginDatabase.checkData(email, password);
+        if(flag==1){
+            response.sendRedirect("DataDisplay.jsp");
+        }
+        
     }
 
     

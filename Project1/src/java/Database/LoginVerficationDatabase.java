@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author shivam
  */
 public class LoginVerficationDatabase  extends DatabaseConnector{
-    public void checkData(String email, String password){
+    public int checkData(String email, String password){
         System.out.println("email2:-"+email+"  "+password);
         initializeDbConnection();
         String name=null,pass=null;
@@ -25,14 +25,18 @@ public class LoginVerficationDatabase  extends DatabaseConnector{
                 pass=resultSet.getString("passwords");
             }
             if(pass.equals(password)){
-                    System.out.println("yo are welcome");
+                    return 1;
             }
             
-        } catch (SQLException ex) {
+                
+            
+        } 
+        catch (SQLException ex) {
             Logger.getLogger(RegistrationDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
             closeDbConnection(connection);
         }
+        return 0;
     }
 }
